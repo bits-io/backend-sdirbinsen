@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\V1\Admin\PersonilController;
 use App\Http\Controllers\Api\V1\AuthController;
-use App\Http\Controllers\Api\V1\PersonilController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +20,13 @@ Route::prefix('v1')->group(function () {
     Route::post('auth/login', [AuthController::class, 'masterLogin']);
 
 
-    Route::group(['middleware' => ['jwt.role:1']], function () {
+    Route::group(['prefix' => 'admin', 'middleware' => ['jwt.role:1']], function () {
+
         Route::get('personil', [PersonilController::class, 'index']);
+        Route::get('personil/{id}', [PersonilController::class, 'show']);
+        Route::put('personil/{id}', [PersonilController::class, 'update']);
+        Route::post('personil', [PersonilController::class, 'store']);
+        Route::delete('personil/{id}', [PersonilController::class, 'destroy']);
+
     });
 });
