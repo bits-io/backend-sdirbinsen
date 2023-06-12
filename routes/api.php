@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\Admin\ELearningController;
 use App\Http\Controllers\Api\V1\Admin\PersonilController;
 use App\Http\Controllers\Api\V1\AuthController;
 
@@ -27,6 +28,12 @@ Route::prefix('v1')->group(function () {
         Route::put('personil/{id}', [PersonilController::class, 'update']);
         Route::post('personil', [PersonilController::class, 'store']);
         Route::delete('personil/{id}', [PersonilController::class, 'destroy']);
+
+        Route::get('e-learning', [ELearningController::class, 'index']);
+        Route::get('e-learning/{id}', [ELearningController::class, 'show']);
+        Route::put('e-learning/{id}', [ELearningController::class, 'update']);
+        Route::post('e-learning', [ELearningController::class, 'store']);
+        Route::delete('e-learning/{id}', [ELearningController::class, 'destroy']);
 
     });
 });

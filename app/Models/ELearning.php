@@ -17,6 +17,8 @@ class ELearning extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $table = 'e_learning';
+
     protected $fillable = [
         'title',
         'description',
