@@ -86,7 +86,7 @@ The API uses token-based authentication to secure the endpoints. In order to acc
 
 ### Login
 
-- Method: GET
+- Method: POST
 - Endpoint: `/api/v1/login`
 - Content Type: JSON
 
