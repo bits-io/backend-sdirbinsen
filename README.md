@@ -99,6 +99,8 @@ The API uses token-based authentication to secure the endpoints. In order to acc
     "username": "",
     "password": ""
 }
+
+
 </details>- <details>
     <summary>User Profile</summary>
   
