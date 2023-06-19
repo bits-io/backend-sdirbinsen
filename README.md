@@ -84,6 +84,8 @@ The API uses token-based authentication to secure the endpoints. In order to acc
 
 ## Endpoints
 
+<details>
+<summary>Login</summary>
 ### Login
 
 - Method: POST
