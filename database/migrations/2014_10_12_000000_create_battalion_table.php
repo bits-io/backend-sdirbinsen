@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('personil', function (Blueprint $table) {
+        Schema::create('battalion', function (Blueprint $table) {
             $table->id();
-            $table->string('nrp')->unique();
-            $table->string('name');
-            $table->string('username')->unique();
-            $table->string('password');
-            $table->string('battalion_name');
+            $table->string('name')->unique();
+            $table->text('address');
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('personil');
+        Schema::dropIfExists('battalion');
     }
 };

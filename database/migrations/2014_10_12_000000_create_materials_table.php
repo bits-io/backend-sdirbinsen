@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('materials', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('category');
             $table->text('description');
-            $table->text('image');
+            $table->text('file');
             $table->timestamps();
         });
     }
