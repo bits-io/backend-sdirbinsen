@@ -65,34 +65,35 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-API Documentation
+# API Documentation
+
 This repository contains the documentation for the API endpoints provided by the project.
 
-Authentication
-The API uses token-based authentication to secure the endpoints. In order to access protected resources, you need to include an Authorization header with a valid bearer token.
+## Table of Contents
+- [Authentication](#authentication)
+- [Endpoints](#endpoints)
+  - [Login](#login)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-Endpoints
-Login
-Method: GET
-Endpoint: /api/v1/login
-Content Type: JSON
+## Authentication
 
-Request
+The API uses token-based authentication to secure the endpoints. In order to access protected resources, you need to include an `Authorization` header with a valid bearer token.
+
+## Endpoints
+
+### Login
+
+- Method: GET
+- Endpoint: `/api/v1/login`
+- Content Type: JSON
+
+#### Request
+
+```json
 {
     "username": "",
     "password": ""
 }
-Response
-Status Code: 200
-
-Header
-{
-    "Authorization": "bearer token"
-}
-Body
-{
-    "message": "login successfully",
-    "status": "success",
-    "user_data": "userdata"
-}
-
