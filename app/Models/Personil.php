@@ -22,6 +22,7 @@ class Personil extends Authenticatable
         'nrp',
         'name',
         'username',
+        'battalion_name',
     ];
 
     /**

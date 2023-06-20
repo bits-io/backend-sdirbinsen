@@ -52,6 +52,7 @@ class PersonilController extends Controller
                 'name' => 'required',
                 'username' => 'required',
                 'password' => 'required',
+                'battalion_name' => 'required',
             ]);
             if ($validator->fails()) {
                 return responseJson('Validation error', 400, 'Error', ['errors' => $validator->errors()]);
@@ -75,6 +76,7 @@ class PersonilController extends Controller
             $personil->nrp = $request->input('nrp');
             $personil->name = $request->input('name');
             $personil->username = $request->input('username');
+            $personil->battalion_name = $request->input('battalion_name');
             $personil->password = Hash::make($request->input('password'));
             $personil->save();
 
@@ -115,6 +117,7 @@ class PersonilController extends Controller
                 'username' => 'required|unique:personil,username,' . $id,
                 'password' => 'required',
                 'name' => 'required',
+                'battalion_name' => 'required',
             ]);
             if ($validator->fails()) {
                 return responseJson('Validation error', 400, 'Error', ['errors' => $validator->errors()]);
@@ -123,7 +126,8 @@ class PersonilController extends Controller
             // Update the personil data
             $personil->nrp = $request->nrp;
             $personil->username = $request->username;
-            $personil->password = $request->password;
+            $personil->password = Hash::make($request->password);
+            $personil->battalion_name = $request->battalion_name;
             $personil->save();
 
             return responseJson('Update personil', 200, 'Success');

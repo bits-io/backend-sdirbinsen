@@ -19,7 +19,8 @@ class Materials extends Authenticatable
      */
     protected $fillable = [
         'title',
+        'category',
         'description',
-        'image',
+        'file',
     ];
 }

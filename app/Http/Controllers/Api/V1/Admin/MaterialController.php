@@ -48,8 +48,9 @@ class MaterialController extends Controller
         try {
             $validator = Validator::make($request->all(), [
                 'title' => 'required',
+                'category' => 'required',
                 'description' => 'required',
-                'image' => 'required|image|mimes:jpeg,jpg,png,svg|max:2048',
+                'file' => 'required|image|mimes:jpeg,jpg,png,svg|max:2048',
             ]);
 
             if ($validator->fails()) {
@@ -58,11 +59,12 @@ class MaterialController extends Controller
 
             $material = new Materials();
             $material->title = $request->input('title');
+            $material->category = $request->input('category');
             $material->description = $request->input('description');
 
-            if ($request->hasFile('image')) {
-                $file = $request->file('image');
-                $path = $file->store('uploads/material/image', 'public');
+            if ($request->hasFile('file')) {
+                $file = $request->file('file');
+                $path = $file->store('uploads/material/file', 'public');
                 $material->image = $path;
             }
 
@@ -97,8 +99,9 @@ class MaterialController extends Controller
         try {
             return responseJson('Update material', 200, 'Success', [
                 'title'=>$request->input('title'),
+                'category' => $request->input('category'),
                 'description' => $request->input('description'),
-                'image' => $request->file('image'),
+                'file' => $request->file('file'),
                 'all' => $request->all()
             ]);
 
@@ -110,7 +113,7 @@ class MaterialController extends Controller
             $validator = Validator::make($request->all(), [
                 'title' => 'sometimes|required',
                 'description' => 'sometimes|required',
-                'photo' => 'nullable|image|mimes:jpeg,jpg,png,svg|max:2048',
+                'file' => 'nullable|image|mimes:jpeg,jpg,png,svg|max:2048',
             ]);
             if ($validator->fails()) {
                 return responseJson('Validation error', 400, 'Error', ['errors' => $validator->errors()]);
@@ -120,9 +123,9 @@ class MaterialController extends Controller
             $material->title = $request->title;
             $material->description = $request->description;
 
-            if ($request->hasFile('image')) {
-                $file = $request->file('image');
-                $path = $file->store('uploads/material/image', 'public');
+            if ($request->hasFile('file')) {
+                $file = $request->file('file');
+                $path = $file->store('uploads/material/file', 'public');
                 $material->image = $path;
             }
 
