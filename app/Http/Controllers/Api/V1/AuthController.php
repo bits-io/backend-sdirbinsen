@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
@@ -34,7 +35,7 @@ class AuthController extends Controller
 
             $data = [
                 'user' => $user,
-                'token' => $token
+                'token' => $token,
             ];
 
             return responseJson('Login Successfully', 200, 'Success', $data);
@@ -42,5 +43,18 @@ class AuthController extends Controller
             $errorMessage = $th->getMessage();
             return responseJson($errorMessage, 500, 'Error');
         }
+    }
+
+    public function refresh()
+    {
+        $token = JWTAuth::getToken();
+
+        try {
+            $newToken = JWTAuth::refresh($token);
+        } catch (JWTException $e) {
+            return responseJson('Could not refresh token', 500, 'Error');
+        }
+
+        return response()->json(compact('newToken'));
     }
 }

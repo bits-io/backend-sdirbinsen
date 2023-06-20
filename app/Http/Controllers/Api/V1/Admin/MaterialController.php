@@ -50,7 +50,7 @@ class MaterialController extends Controller
                 'title' => 'required',
                 'category' => 'required',
                 'description' => 'required',
-                'file' => 'required|image|mimes:jpeg,jpg,png,svg|max:2048',
+                'file' => 'required|file|mimes:jpeg,jpg,png,svg|max:2048',
             ]);
 
             if ($validator->fails()) {
@@ -65,7 +65,7 @@ class MaterialController extends Controller
             if ($request->hasFile('file')) {
                 $file = $request->file('file');
                 $path = $file->store('uploads/material/file', 'public');
-                $material->image = $path;
+                $material->file = $path;
             }
 
             $material->save();
@@ -113,7 +113,7 @@ class MaterialController extends Controller
             $validator = Validator::make($request->all(), [
                 'title' => 'sometimes|required',
                 'description' => 'sometimes|required',
-                'file' => 'nullable|image|mimes:jpeg,jpg,png,svg|max:2048',
+                'file' => 'nullable|file|mimes:jpeg,jpg,png,svg|max:2048',
             ]);
             if ($validator->fails()) {
                 return responseJson('Validation error', 400, 'Error', ['errors' => $validator->errors()]);
